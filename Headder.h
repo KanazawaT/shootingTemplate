@@ -1,12 +1,24 @@
 #pragma once
 
+class Vector2 {
+public :
+	double x, y;
+	Vector2();
+	Vector2(double, double);
+	double distance(Vector2*);
+	double distance2(Vector2*);
+	double product(Vector2 *);
+	void set(double, double);
+};
+
 class ShootingScene {
 
 };
 
 class Object {
 private:
-	float x, y, angle;
+	Vector2 position;
+	float  angle;
 	int img;
 public :
 	Object();
