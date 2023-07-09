@@ -11,21 +11,40 @@ public :
 	void set(double, double);
 };
 
+class Image {
+public:
+	int hundle;
+	int x, y;
+};
+
 class ShootingScene {
 
 };
 
 class Object {
-private:
+protected:
 	Vector2 position;
 	float  angle;
 	int img;
+	int bornTime;
 public :
 	Object();
+	Object(double,double,double,int);
 	virtual void view();
+};
+
+class Unit :public Object {
+protected:
+	int hp;
+protected:
+	Unit();
+	Unit(double, double, double, int ,int);
 };
 
 class Player :public Object
 {
+private:
+	
+public:
 	Player();
 };

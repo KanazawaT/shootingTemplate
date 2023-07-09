@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int images[imageNum];
+Image images[imageNum];
 const char* imageNames[imageNum] = {"images/player.png"};
 
 void loadImg();
@@ -31,11 +31,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 void loadImg() {
 	for (int i = 0; i < imageNum; i++) {
-		images[i] = LoadGraph(imageNames[i]);
+		images[i].hundle = LoadGraph(imageNames[i]);
+		GetGraphSize(images[i].hundle, &images[i].x, &images[i].y);
+		images[i].x /= 2;
+		images[i].y /= 2;
+
 	}
 }
 
 void drawImg(int x,int y,int id) {
-	DrawGraph(x, y, images[id], TRUE);
+	DrawGraph(x - images[id].x, y - images[id].y, images[id].hundle, TRUE);
 
 }
