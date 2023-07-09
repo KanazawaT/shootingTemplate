@@ -15,5 +15,5 @@ Object::Object(double x, double y, double angle,int bornTime) {
 }
 
 void Object::view() {
-
+	drawImg(this->position.x, this->position.y, this->img);
 }

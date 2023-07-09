@@ -1,4 +1,5 @@
 #pragma once
+#define OBJECTS_NUM 256 
 
 class Vector2 {
 public :
@@ -17,9 +18,6 @@ public:
 	int x, y;
 };
 
-class ShootingScene {
-
-};
 
 class Object {
 protected:
@@ -47,4 +45,22 @@ private:
 	
 public:
 	Player();
+	void move(int, char, char, char, char);
+	void reset();
+	void view();
 };
+
+class ShootingScene {
+private:
+	Player player;
+	Object* objects[OBJECTS_NUM];
+	int startCount;
+	int tick;
+public:
+	int main();
+	void view();
+	void update(int, char[]);
+	virtual void regularlyUpdate(int);
+};
+
+void drawImg(int,int,int);

@@ -20,8 +20,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		return -1;			// エラーが起きたら直ちに終了
 	}
 	
-	DrawPixel(320, 240, GetColor(255, 255, 255));	// 点を打つ
-	
+	//DrawPixel(320, 240, GetColor(255, 255, 255));	// 点を打つ
+	SetDrawScreen(DX_SCREEN_BACK);//裏画面描画モードに変更
+
+	loadImg();
+
+	ShootingScene sc;
+	sc.main();
+
 	WaitKey();				// キー入力待ち
 
 	DxLib_End();				// ＤＸライブラリ使用の終了処理
@@ -41,5 +47,5 @@ void loadImg() {
 
 void drawImg(int x,int y,int id) {
 	DrawGraph(x - images[id].x, y - images[id].y, images[id].hundle, TRUE);
-
+	DrawNumberToI(0, 0, x - images[id].x, 10, 0xffffff);
 }
