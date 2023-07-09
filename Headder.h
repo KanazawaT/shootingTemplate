@@ -10,10 +10,10 @@ private:
 	int img;
 public :
 	Object();
-	void view();
+	virtual void view();
 };
 
 class Player :public Object
 {
-
+	Player();
 };

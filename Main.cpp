@@ -2,9 +2,10 @@
 #include "Headder.h"
 #define imageNum 1
 
+using namespace std;
 
 int images[imageNum];
-const char *imageNames[imageNum] = {"player.png"};
+const char* imageNames[imageNum] = {"images/player.png"};
 
 void loadImg();
 void drawImg(int,int,int);
@@ -18,9 +19,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	{
 		return -1;			// エラーが起きたら直ちに終了
 	}
-
+	
 	DrawPixel(320, 240, GetColor(255, 255, 255));	// 点を打つ
-
+	
 	WaitKey();				// キー入力待ち
 
 	DxLib_End();				// ＤＸライブラリ使用の終了処理
@@ -36,4 +37,5 @@ void loadImg() {
 
 void drawImg(int x,int y,int id) {
 	DrawGraph(x, y, images[id], TRUE);
+
 }
