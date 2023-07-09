@@ -36,7 +36,7 @@ public :
 //敵ユニット用にhp追加
 class Unit :public Object {
 protected:
-	int hp;
+	int hp;//敵ユニットにはhpが設定されている
 protected:
 	Unit();
 	Unit(double, double, double, int ,int);
