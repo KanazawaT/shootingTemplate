@@ -2,18 +2,16 @@
 #include "Headder.h"
 #define imageNum 1
 
-using namespace std;
+Image images[imageNum];//読み込んだ画像用
+const char* imageNames[imageNum] = {"images/player.png"};//読み込みたい画像の名前
 
-Image images[imageNum];
-const char* imageNames[imageNum] = {"images/player.png"};
-
-void loadImg();
-void drawImg(int,int,int);
+void loadImg();//メモリに画像を読み込む
+void drawImg(int,int,int);//簡易画像描画関数
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	ChangeWindowMode(TRUE);
+	ChangeWindowMode(TRUE);//ウインドウモードにする
 
 	if (DxLib_Init() == -1)		// ＤＸライブラリ初期化処理
 	{
@@ -23,10 +21,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//DrawPixel(320, 240, GetColor(255, 255, 255));	// 点を打つ
 	SetDrawScreen(DX_SCREEN_BACK);//裏画面描画モードに変更
 
-	loadImg();
+	loadImg();//メモリに画像を読み込む
 
-	ShootingScene sc;
-	sc.main();
+	ShootingScene sc;//シーンオブジェクトを生成
+	
+	sc.main();//メイン関数
 
 	WaitKey();				// キー入力待ち
 
@@ -35,6 +34,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	return 0;				// ソフトの終了 
 }
 
+//メモリに画像を読み込む
 void loadImg() {
 	for (int i = 0; i < imageNum; i++) {
 		images[i].hundle = LoadGraph(imageNames[i]);
@@ -45,7 +45,7 @@ void loadImg() {
 	}
 }
 
+//簡易画像描画関数
 void drawImg(int x,int y,int id) {
 	DrawGraph(x - images[id].x, y - images[id].y, images[id].hundle, TRUE);
-	DrawNumberToI(0, 0, x - images[id].x, 10, 0xffffff);
 }

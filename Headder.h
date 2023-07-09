@@ -1,6 +1,7 @@
 #pragma once
 #define OBJECTS_NUM 256 
 
+//主に位置座標用2次元ベクトル
 class Vector2 {
 public :
 	double x, y;
@@ -12,13 +13,14 @@ public :
 	void set(double, double);
 };
 
+//画像のハンドルとオフセット用の数値
 class Image {
 public:
 	int hundle;
 	int x, y;
 };
 
-
+//オブジェクトの親
 class Object {
 protected:
 	Vector2 position;
@@ -31,6 +33,7 @@ public :
 	virtual void view();
 };
 
+//敵ユニット用にhp追加
 class Unit :public Object {
 protected:
 	int hp;
@@ -39,6 +42,7 @@ protected:
 	Unit(double, double, double, int ,int);
 };
 
+//自機オブジェクト用
 class Player :public Object
 {
 private:
@@ -50,6 +54,7 @@ public:
 	void view();
 };
 
+//敵のスポーンなどをつかさどるシーンの親
 class ShootingScene {
 private:
 	Player player;
@@ -63,4 +68,5 @@ public:
 	virtual void regularlyUpdate(int);
 };
 
+//簡易描画関数のプロトタイプ宣言
 void drawImg(int,int,int);

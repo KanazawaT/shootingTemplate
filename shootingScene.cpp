@@ -37,17 +37,20 @@ int ShootingScene:: main() {
 	}
 }
 
+//毎フレーム呼び出される。deltatime分の時間経過処理
 void ShootingScene::update(int deltaTime,char key[]) {
 	this->player.move(deltaTime, key[KEY_INPUT_UP], key[KEY_INPUT_DOWN], key[KEY_INPUT_LEFT], key[KEY_INPUT_RIGHT]);//プレイヤーの移動
 
 }
 
+//色々なオブジェクトを描画する
 void ShootingScene::view() {
 	ClearDrawScreen();
 	this->player.view();
 	ScreenFlip();
 }
 
+//1秒に20回呼び出される時間経過処理
 void ShootingScene::regularlyUpdate(int tick) {
 
 }
