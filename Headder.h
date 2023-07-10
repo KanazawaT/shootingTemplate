@@ -1,5 +1,11 @@
 #pragma once
-#define OBJECTS_NUM 256 
+#define ENEMYS_NUM 32
+#define BULLETS_NUM 256 
+#define PLAYER_BULLETS_NUM 32
+#define TICK_TIME 50//1tickの長さミリ秒
+
+void loadImg();//メモリに画像を読み込む
+void drawImg(int, int, int);//簡易画像描画関数
 
 //主に位置座標用2次元ベクトル
 class Vector2 {
@@ -58,14 +64,22 @@ public:
 class ShootingScene {
 private:
 	Player player;
-	Object* objects[OBJECTS_NUM];
-	int startCount;
-	int tick;
+	Unit* enemys[ENEMYS_NUM];
+	Object* bullets[BULLETS_NUM];
+	Object* playersBullets[PLAYER_BULLETS_NUM];
+	int startCount;//ゲームスタート時の時刻
+	int tick;//ゲーム開始からの経過時間(単位50ms)
+	int newEnemyIndex, newBulletIndex, newPlayersBulletIndex;//次に生成するオブジェクトを配列の何番目に入れるか
 public:
+	ShootingScene();
+	~ShootingScene();
 	int main();
 	void view();
-	void update(int, char[]);
-	virtual void regularlyUpdate(int);
+	void update(int,int, char[]);
+	virtual void regularlyUpdate(int,int);
+	void addEnemy(Unit*);
+	void addBullet(Object *);
+	void addPlayersBullet(Object*);
 };
 
 //簡易描画関数のプロトタイプ宣言
