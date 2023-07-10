@@ -35,8 +35,9 @@ protected:
 	int bornTime;
 public :
 	Object();
-	Object(double,double,double,int);
+	Object(double,double,double);
 	virtual void view();
+	void setBornTime(int);
 };
 
 //敵ユニット用にhp追加
@@ -45,7 +46,7 @@ protected:
 	int hp;//敵ユニットにはhpが設定されている
 protected:
 	Unit();
-	Unit(double, double, double, int ,int);
+	Unit(double, double, double,int);
 };
 
 //自機オブジェクト用

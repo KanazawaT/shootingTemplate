@@ -9,14 +9,18 @@ Object::Object() {
 }
 
 //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-Object::Object(double x, double y, double angle,int bornTime) {
+Object::Object(double x, double y, double angle) {
 	this->position.set(x, y);
 	this->angle = angle;
 	this->img = 0;
-	this->bornTime = bornTime;
+	this->bornTime = 0;//bornTime‚ÍŒã‚Å“o˜^‚·‚é
 }
 
 //Šî–{‚Ì•`‰æŠÖ”
 void Object::view() {
 	drawImg(this->position.x, this->position.y, this->img);
+}
+
+void Object::setBornTime(int bornTime) {
+	this->bornTime = bornTime;
 }

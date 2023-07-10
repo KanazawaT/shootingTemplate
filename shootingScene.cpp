@@ -99,17 +99,29 @@ void ShootingScene::view() {
 }
 
 void ShootingScene::addEnemy(Unit* unit) {
+	if (this->enemys[this->newEnemyIndex] != NULL) {
+		delete this->enemys[this->newEnemyIndex];
+	}
 	this->enemys[this->newEnemyIndex] = unit;
+	unit->setBornTime(this->tick);
 	this->newEnemyIndex = (this->newEnemyIndex + 1) % ENEMYS_NUM;
 }
 
 void ShootingScene::addBullet(Object* bullet) {
+	if (this->bullets[this->newBulletIndex] != NULL) {
+		delete this->bullets[this->newBulletIndex];
+	}
 	this->bullets[this->newBulletIndex] = bullet;
+	bullet->setBornTime(this->tick);
 	this->newBulletIndex = (this->newBulletIndex + 1) % BULLETS_NUM;
 }
 
 void ShootingScene::addPlayersBullet(Object* bullet) {
+	if (this->playersBullets[this->newPlayersBulletIndex] != NULL) {
+		delete this->playersBullets[this->newPlayersBulletIndex];
+	}
 	this->playersBullets[this->newPlayersBulletIndex] = bullet;
+	bullet->setBornTime(this->tick);
 	this->newPlayersBulletIndex = (this->newPlayersBulletIndex + 1) % PLAYER_BULLETS_NUM;
 }
 
