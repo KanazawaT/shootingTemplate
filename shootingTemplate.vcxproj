@@ -139,11 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BulletTemplate.cpp" />
     <ClCompile Include="LoadImage.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="shootingScene.cpp" />
+    <ClCompile Include="ShootingScene.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>

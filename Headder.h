@@ -16,7 +16,9 @@ public :
 	double distance(Vector2*);
 	double distance2(Vector2*);
 	double product(Vector2 *);
+	double getAngleToTarget(Vector2 *);
 	void set(double, double);
+	void add(Vector2*);
 };
 
 //画像のハンドルとオフセット用の数値
@@ -26,18 +28,23 @@ public:
 	int x, y;
 };
 
+class ShootingScene;
+
 //オブジェクトの親
 class Object {
 protected:
 	Vector2 position;
-	float  angle;
 	int img;
 	int bornTime;
+	int bornTick;
 public :
 	Object();
-	Object(double,double,double);
+	Object(double,double,int);
 	virtual void view();
-	void setBornTime(int);
+	virtual void update(int,int);
+	virtual int regularlyUpdate(int,ShootingScene *);
+	void setBornTime(int,int);
+	Vector2* getPosition();
 };
 
 //敵ユニット用にhp追加
@@ -69,6 +76,7 @@ private:
 	Object* bullets[BULLETS_NUM];
 	Object* playersBullets[PLAYER_BULLETS_NUM];
 	int startCount;//ゲームスタート時の時刻
+	int now;
 	int tick;//ゲーム開始からの経過時間(単位50ms)
 	int newEnemyIndex, newBulletIndex, newPlayersBulletIndex;//次に生成するオブジェクトを配列の何番目に入れるか
 public:
@@ -85,3 +93,12 @@ public:
 
 //簡易描画関数のプロトタイプ宣言
 void drawImg(int,int,int);
+
+class BulletTemplate :public Object{
+private:
+	Vector2 delta;
+public:
+	BulletTemplate(double, double, double, double, int);
+	void update(int,int);
+	int regularlyUpdate(int, ShootingScene *);
+};

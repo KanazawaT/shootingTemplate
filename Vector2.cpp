@@ -26,8 +26,18 @@ double Vector2::product(Vector2* vec) {
 	return this->x * vec->x + this->y * vec->y;
 }
 
+//指定座標への方向を得る
+double Vector2::getAngleToTarget(Vector2* target) {
+	return atan2(target->y - this->y, target->x - this->x);
+}
+
 //値をセットする
 void Vector2::set(double x, double y) {
 	this->x = x;
 	this->y = y;
+}
+
+void Vector2::add(Vector2 *delta) {
+	this->x += delta->x;
+	this->y += delta->y;
 }

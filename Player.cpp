@@ -14,7 +14,6 @@ void Player::move(int deltaTime,char up,char down,char left,char right) {
 //プレイヤーを初期位置に戻す
 void Player::reset() {
 	this->img = 0;
-	this->angle = 0;
 	this->position.set(320, 440);
 }
 
