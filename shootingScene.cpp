@@ -94,12 +94,21 @@ void ShootingScene::update(int deltaTime,int now,char key[]) {
 			this->enemys[i]->update(deltaTime, now);
 		}
 	}
+	for (int i = 0; i < PLAYER_BULLETS_NUM; i++) {
+		if (this->playersBullets[i] != NULL) {
+			this->playersBullets[i]->update(deltaTime, now);
+		}
+	}
+
 }
 
 //1秒に20回呼び出される時間経過処理
 void ShootingScene::regularlyUpdate(int tick, int now) {
 	if (tick % 20 == 0) {
 		this->addEnemy(new EnemyTemplate(5, 100, 2, 0 ,2, 1,10));
+	}
+	if (tick % 3 == 0) {
+		this->addPlayersBullet(new BulletTemplate(this->player.getPosition()->x, this->player.getPosition()->y, 5, -3.141592 / 2, 2, 5));
 	}
 	for (int i = 0; i < BULLETS_NUM; i++) {
 		if (this->bullets[i] != NULL) {
@@ -117,15 +126,24 @@ void ShootingScene::regularlyUpdate(int tick, int now) {
 			}
 		}
 	}
+	for (int i = 0; i < PLAYER_BULLETS_NUM; i++) {
+		if (this->playersBullets[i] != NULL) {
+			if (this->playersBullets[i]->regularlyUpdate(tick, this) == -1) {
+				delete this->playersBullets[i];
+				this->playersBullets[i] = NULL;
+			}
+		}
+	}
 
 }
 
 //色々なオブジェクトを描画する
 void ShootingScene::view() {
 	ClearDrawScreen();
-	for (int i = 0; i < BULLETS_NUM; i++) {
-		if (this->bullets[i] != NULL) {
-			this->bullets[i]->view();
+	this->player.view();
+	for (int i = 0; i < PLAYER_BULLETS_NUM; i++) {
+		if (this->playersBullets[i] != NULL) {
+			this->playersBullets[i]->view();
 		}
 	}
 	for (int i = 0; i < ENEMYS_NUM; i++) {
@@ -133,8 +151,13 @@ void ShootingScene::view() {
 			this->enemys[i]->view();
 		}
 	}
-	this->player.view();
-	ScreenFlip();
+	for (int i = 0; i < BULLETS_NUM; i++) {
+		if (this->bullets[i] != NULL) {
+			this->bullets[i]->view();
+		}
+	}
+
+	ScreenFlip();//裏画面を入れ替え
 }
 
 void ShootingScene::addEnemy(Unit* unit) {
