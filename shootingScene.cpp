@@ -110,6 +110,11 @@ void ShootingScene::regularlyUpdate(int tick, int now) {
 //色々なオブジェクトを描画する
 void ShootingScene::view() {
 	ClearDrawScreen();
+	for (int i = 0; i < BULLETS_NUM; i++) {
+		if (this->bullets[i] != NULL) {
+			this->bullets[i]->view();
+		}
+	}
 	this->player.view();
 	ScreenFlip();
 }
