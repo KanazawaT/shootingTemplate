@@ -1,7 +1,7 @@
 #include "Headder.h"
 #include <math.h>
 
-BulletTemplate::BulletTemplate(double x,double y,double speed,double angle,int img) : Object(x,y,img){
+BulletTemplate::BulletTemplate(double x,double y,double speed,double angle,double r,int img) : Object(x,y,r,img){
 	this->delta.set(speed * cos(angle), speed * sin(angle));
 }
 

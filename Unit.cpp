@@ -6,6 +6,6 @@ Unit::Unit() :Object() {
 }
 
 //コンストラクタ
-Unit::Unit(double x, double y, double angle,int hp):Object(x,y,angle) {
+Unit::Unit(double x, double y, double r,int img,int hp):Object(x,y,r,img) {
 	this->hp = hp;
 }

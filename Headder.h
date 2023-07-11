@@ -34,12 +34,13 @@ class ShootingScene;
 class Object {
 protected:
 	Vector2 position;
+	double r;
 	int img;
 	int bornTime;
 	int bornTick;
 public :
 	Object();
-	Object(double,double,int);
+	Object(double,double,double,int);
 	virtual void view();
 	virtual void update(int,int);
 	virtual int regularlyUpdate(int,ShootingScene *);
@@ -53,7 +54,7 @@ protected:
 	int hp;//敵ユニットにはhpが設定されている
 protected:
 	Unit();
-	Unit(double, double, double,int);
+	Unit(double, double, double, int,int);
 };
 
 //自機オブジェクト用
@@ -89,6 +90,7 @@ public:
 	void addEnemy(Unit*);
 	void addBullet(Object *);
 	void addPlayersBullet(Object*);
+	Vector2* getPlayerPosition();
 };
 
 //簡易描画関数のプロトタイプ宣言
@@ -98,7 +100,16 @@ class BulletTemplate :public Object{
 private:
 	Vector2 delta;
 public:
-	BulletTemplate(double, double, double, double, int);
+	BulletTemplate(double, double, double, double,double, int);
 	void update(int,int);
 	int regularlyUpdate(int, ShootingScene *);
+};
+
+class EnemyTemplate : public Unit {
+private:
+	Vector2 delta;
+public:
+	EnemyTemplate(double, double, double, double,double, int, int);
+	void update(int, int);
+	int regularlyUpdate(int, ShootingScene*);
 };
